@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="org.note.dao.NoteShareDao">
+
+    <insert id="insertIntoShare"  parameterType="org.note.entity.Share">
+		insert into cn_share(cn_share_id,cn_share_title,cn_share_body,cn_note_id)
+		values(#{cn_share_id},#{cn_share_title},#{cn_share_body},#{cn_note_id})
+	</insert>
+	
+	<select id="findByNoteId" parameterType="string" resultType="org.note.entity.Share">
+		select * from cn_share where cn_note_id=#{cn_note_id}
+	</select>
+	
+	<select id="findSharesByKey" parameterType="string" resultType="org.note.entity.Share">
+		select * from cn_share where cn_share_title like #{key}
+	</select>
+	
+	<update id="editShare" parameterType="org.note.entity.Share">
+		update cn_share set cn_share_title=#{cn_share_title},cn_share_body=#{cn_share_body}
+		where cn_note_id=#{cn_note_id}
+	</update>
+
+</mapper>
+	

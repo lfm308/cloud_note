@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="org.note.dao.UserDao">
+
+	<select id="findByName" parameterType="string" resultType="org.note.entity.User">
+			select * from cn_user where cn_user_name=#{name}
+	</select>
+	
+	<!-- 增删改不需要返回类型,下面是提取属性值#{}属性名和字段名刚好一样 -->
+	<insert id="save" parameterType="org.note.entity.User">
+		insert into cn_user(cn_user_id,cn_user_name,cn_user_password,cn_user_token,cn_user_desc)
+		values(#{cn_user_id},#{cn_user_name},#{cn_user_password},#{cn_user_token},#{cn_user_desc})
+	</insert>
+	  
+</mapper>
